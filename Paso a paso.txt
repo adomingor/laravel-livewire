@@ -1,0 +1,69 @@
+Primeros pasos
+
+                                    --------------------------------------------------------
+                                        GITHUB COMO PUBLICAR A UN REPOSITORIO POR 1RA VEZ
+                                    --------------------------------------------------------
+
+1. Preparación en GitHub
+    Crea el repositorio en GitHub.
+    Copia la URL HTTPS del repositorio que te proporciona GitHub (https://github.com/adomingor/laravel-livewire.git).
+
+2. Preparación en VS Code (Casa)
+    Abre tu carpeta de proyecto en Visual Studio Code.Abre la terminal integrada (Terminal -> New Terminal o Ctrl + ñ o Ctrl + j).
+
+3. Conectar local con remoto y subirEjecuta los siguientes comandos en la terminal de VS Code:
+    Inicializar Git: Crea un repositorio local.
+        git init
+
+    Añadir archivos: Prepara todos los archivos para el commit.
+        git add .
+
+    Confirmar cambios (Commit): Guarda la instantánea de los archivos.
+        git commit -m "Iniciando repositorio desde casa php artisan make:livewire createPost"
+
+    Vincular repositorio remoto: Conecta tu proyecto local con el repositorio de GitHub (reemplaza la URL).
+        git remote add origin https://github.com/adomingor/laravel-livewire.git
+
+    Subir código (Push): Envía el código a GitHub.
+        git push -u origin main
+
+                                        --------------------------------------------------------
+FIN                                        GITHUB COMO PUBLICAR A UN REPOSITORIO POR 1RA VEZ
+                                        --------------------------------------------------------
+
+
+
+cuando ejecute composer run dev no encontró vite, ejecutar
+    npm install
+--------------------------------------------------------
+added 95 packages, and audited 96 packages in 15s
+
+27 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+--------------------------------------------------------
+Pasó de 80 a 150 MB
+
+Listo a tirar magia! (Siguiendo el ejemplo de https://youtu.be/ai5yfLzBgVo)
+
+php artisan make:livewire createPost
+
+
+--------------------------------------------------------
+cuando creo un componente con laravel livewire a los archivos le pone un rayo adelante del nombre ⚡create-post.blade.php por ejemplo, como evito eso
+
+Ese rayo (⚡) es un emoji decorativo de Laravel Livewire para identificar componentes en el editor y se puede quitar desactivándolo en la configuración. Abre config/livewire.php y cambia 'render_on_load' => true, a false, o busca la opción class_namespace para personalizar el prefijo si usas una versión que lo permita
+
+    No tengo livewire.php, hay que publicarlo
+
+Publicar configuración: Si no tienes el archivo de configuración de Livewire, publícalo con:bashphp artisan vendor:publish --tag=livewire:config
+Editar config/livewire.php: Busca la opción que controla los "stubs" (plantillas) o el prefijo de componente. En versiones modernas de Livewire, el rayo se puede eliminar modificando cómo Livewire genera los archivos.Alternativa - Personalizar Stubs: Puedes publicar los stubs (plantillas de archivos) de Livewire y quitar el rayo manualmente de ellos:bashphp artisan livewire:stubs
+Luego, edita los archivos en la carpeta stubs/ que se acaba de crear en tu proyecto, eliminando el emoji ⚡ de los nombres de archivo.El emoji ⚡ es opcional y no afecta el funcionamiento de tu aplicación, solo sirve como indicador visual.
+--------------------------------------------------------
+
+            Retomando... dejo el nombre con el cochino rayo
+    Cuando ejecuté php artisan make:livewire createPost creó un solo archivo donde está todo, Clase y vista (no es de mi agrado).
+    
+    Para que cree dos archivos como es la forma clásica...
+php artisan make:livewire create-post --view

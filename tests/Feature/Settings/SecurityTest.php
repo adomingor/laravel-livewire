@@ -18,7 +18,7 @@ class SecurityTest extends TestCase
     {
         parent::setUp();
 
-        $this->skipUnlessFortifyHas(Features::twoFactorAuthentication());
+        $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
 
         Features::twoFactorAuthentication([
             'confirm' => true,

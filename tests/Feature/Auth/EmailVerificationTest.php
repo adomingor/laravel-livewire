@@ -18,7 +18,7 @@ class EmailVerificationTest extends TestCase
     {
         parent::setUp();
 
-        $this->skipUnlessFortifyHas(Features::emailVerification());
+        $this->skipUnlessFortifyFeature(Features::emailVerification());
     }
 
     public function test_email_verification_screen_can_be_rendered(): void
