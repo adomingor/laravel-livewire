@@ -32,6 +32,27 @@ FIN                                        GITHUB COMO PUBLICAR A UN REPOSITORIO
                                         --------------------------------------------------------
 
 
+                                    --------------------------------------------------------
+                                        GITHUB TRAER UN REPOSITORIO POR 1RA VEZ
+                                    --------------------------------------------------------
+Crear el proyecto
+    git init
+    git add . 
+    git commit -m "primer commit"
+
+Conectarse al repositorio
+git remote add origin https://github.com/adomingor/laravel-livewire.git
+git pull origin main --allow-unrelated-histories
+    Hay conflictos, forzar los cambios
+git checkout origin/main -- .
+git add .
+git merge --continue
+                                    --------------------------------------------------------
+FIN                                     GITHUB TRAER UN REPOSITORIO POR 1RA VEZ
+                                    --------------------------------------------------------
+
+
+
 
 cuando ejecute composer run dev no encontró vite, ejecutar
     npm install
