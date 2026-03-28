@@ -21,5 +21,14 @@
         <p></p>
         <livewire:contador />
 
+        <h1>Paso de parámetros</h1>
+        Estáticos al componente
+        <livewire:nombre_x_parametro param_nombre="Dom!" param_edad="49" />
+
+        Dinámicos al componente
+        <p>Desde web.php Hola {{ $web_nombre }}! Tienes {{ $web_edad }} años.</p>
+        {{-- Para pasar los parámetros al componente, se pone : antes del nombre del parámetro, y se le asigna el valor con comillas dobles, y dentro de las comillas dobles se pone el nombre de la variable que se quiere pasar, con el signo $ antes del nombre de la variable. Ejemplo: :param_nombre="$web_nombre" :param_edad="$web_edad" --}}
+        <livewire:nombre_x_parametro :param_nombre="$web_nombre" :param_edad="$web_edad" />
+
     </div>
 </x-layouts::app>

@@ -116,6 +116,12 @@ La lógica nueva en v4: los modificadores antes de .live controlan el timing del
 -----------------------------------------------------------
 
                         ----------------------------------------------------------------------------------------------------------------------
-                                        Ejemplo básico de contador con propiedad pública y privada
+                                                    Ejemplo básico de contador con propiedad pública y privada
                         ----------------------------------------------------------------------------------------------------------------------
+php artisan make:livewire contador (Lo mostramos en el dashboard)
+
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                            Ejemplo básico de paso de parámetros
+                        ----------------------------------------------------------------------------------------------------------------------
+php artisan make:livewire nombre_x_parametro (Comenzamos en el dashboard)
 
