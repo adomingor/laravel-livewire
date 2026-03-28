@@ -1,3 +1,7 @@
+Extensiones instaladas
+
+Livewire Intellisense Extension for VSCode (NOP, no me gustó)
+
 Primeros pasos
 
                                     --------------------------------------------------------
@@ -30,27 +34,6 @@ Primeros pasos
                                         --------------------------------------------------------
 FIN                                        GITHUB COMO PUBLICAR A UN REPOSITORIO POR 1RA VEZ
                                         --------------------------------------------------------
-
-
-                                    --------------------------------------------------------
-                                        GITHUB TRAER UN REPOSITORIO POR 1RA VEZ
-                                    --------------------------------------------------------
-Crear el proyecto
-    git init
-    git add . 
-    git commit -m "primer commit"
-
-Conectarse al repositorio
-git remote add origin https://github.com/adomingor/laravel-livewire.git
-git pull origin main --allow-unrelated-histories
-    Hay conflictos, forzar los cambios
-git checkout origin/main -- .
-git add .
-git merge --continue
-                                    --------------------------------------------------------
-FIN                                     GITHUB TRAER UN REPOSITORIO POR 1RA VEZ
-                                    --------------------------------------------------------
-
 
 
 
@@ -88,3 +71,46 @@ Luego, edita los archivos en la carpeta stubs/ que se acaba de crear en tu proye
     
     Para que cree dos archivos como es la forma clásica...
 php artisan make:livewire create-post --view
+
+👉 Esto crea:
+
+Clase → app/Livewire/CreatePost.php
+Vista → resources/views/livewire/create-post.blade.php
+
+            EN LIVEWIRE 4 YA NO FUNCIONA 👆 hay que separar a mano los archivos (vamos a usar uno solo archivo para seguir con la forma del framework)
+
+SEGUIMOS ... Después de php artisan make:livewire createPost
+
+Se crecó el archivo ⚡create-post.blade.php con clase y div vacíos
+en el div hice un formulario con 2 entradas
+    input type="text" id="title" wire:model="title" placeholder="Título del post" ....
+    <textarea id="content" wire:model="content" rows="4" placeholder="Contenido del post" ...
+Los wire:model= son para hacer referencia a las variables públicas de la clase (del mismo archivo en este caso)
+
+En la clase cree las 2 variables
+    public $title = '';
+    public $content = '';
+
+En el form está la línea 
+    <form wire:submit.prevent="createPost" class="space-y-4">
+wire:submit.prevent= es para hacer referencia a la función que se va a ejecutar en éste caso llama a createPost
+
+-----------------------------------------------------------
+        TENIA PROBLEMAS CON ALGUNAS FUNCIONES DEL wire:model (por ejemplo wire:model.blur o wire:model.change) consultando a Claudio...
+
+En Livewire v3 (comportamiento antiguo):
+
+Directiva	Comportamiento
+wire:model.blur	Sincroniza con el servidor al perder el foco
+wire:model.change	Sincroniza con el servidor al cambiar
+En Livewire v4 (comportamiento nuevo - BREAKING CHANGE):
+
+Directiva	Comportamiento
+wire:model.blur	Solo actualiza el estado cliente (Alpine), NO envía al servidor
+wire:model.change	Solo actualiza el estado cliente (Alpine), NO envía al servidor
+wire:model.live.blur	Sincroniza con el servidor al perder el foco (= el viejo .blur)
+wire:model.live.change	Sincroniza con el servidor al cambiar (= el viejo .change)
+La lógica nueva en v4: los modificadores antes de .live controlan el timing del estado cliente (Alpine), los modificadores después de .live controlan cuándo se hace la petición al servidor.
+
+    FENOMENAL EL CAMBIO!!! 
+-----------------------------------------------------------
