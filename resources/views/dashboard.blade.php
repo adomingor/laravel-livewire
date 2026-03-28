@@ -16,5 +16,10 @@
         </div> -->
         
         <livewire:create-post />
+
+        <h1>Parte del contador</h1>
+        <p></p>
+        <livewire:contador />
+
     </div>
 </x-layouts::app>
