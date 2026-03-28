@@ -139,3 +139,17 @@ php artisan make:livewire ClaseSepradaDeVista --class
     Clase en app\Livewire\ClaseSepradaDeVista.php
     Vista en resources\views\livewire\clase-seprada-de-vista.blade.php
 Funciona heeeeeeermoso!
+
+
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                            Publicar archivo de configuración de livewire
+                        ----------------------------------------------------------------------------------------------------------------------
+php artisan livewire:config
+
+    Crea el archivo config\livewire.php
+
+    Cuando se crea un componente se puede pasarle parámetros sfc, mfc, class
+
+    * SFC significa Single File Component (Componente de Archivo Único). En este formato, la lógica PHP (clase), la plantilla Blade (HTML) y, opcionalmente, los estilos CSS y scripts JavaScript, residen en un solo archivo con extensión .php o .blade.php, utilizando una sintaxis especial similar a los componentes de frameworks frontend como Vue.js.
+    * MFC significa Multi-File Component (Componente de Múltiples Archivos). En este formato, la lógica PHP se encuentra en un archivo de clase (.php) separado de su respectiva plantilla Blade (.blade.php). Este era el enfoque convencional en versiones anteriores de Livewire (antes de v4).
+    * Class se refiere específicamente al formato Class-based component (Componente basado en Clase). Es similar a MFC, pero se usa para referirse a la estructura tradicional donde el foco principal es la clase PHP que extiende de Livewire\Component y su vista asociada se encuentra en una ubicación separada, a menudo en resources/views/livewire
