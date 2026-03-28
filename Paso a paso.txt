@@ -125,3 +125,17 @@ php artisan make:livewire contador (Lo mostramos en el dashboard)
                         ----------------------------------------------------------------------------------------------------------------------
 php artisan make:livewire nombre_x_parametro (Comenzamos en el dashboard)
 
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                            Creando componentes
+                        ----------------------------------------------------------------------------------------------------------------------
+    Como se venía haciendo para crear un solo archivo 
+php artisan make:livewire nombre_componente
+
+    Para separar el controlador de la vista!!!! COOOOOOOOOL
+php artisan make:livewire NombreClase --class (veamos si funca.. la primera letra con mayúsculas)
+
+php artisan make:livewire ClaseSepradaDeVista --class
+
+    Clase en app\Livewire\ClaseSepradaDeVista.php
+    Vista en resources\views\livewire\clase-seprada-de-vista.blade.php
+Funciona heeeeeeermoso!
