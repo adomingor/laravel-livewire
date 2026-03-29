@@ -153,3 +153,45 @@ php artisan livewire:config
     * SFC significa Single File Component (Componente de Archivo Único). En este formato, la lógica PHP (clase), la plantilla Blade (HTML) y, opcionalmente, los estilos CSS y scripts JavaScript, residen en un solo archivo con extensión .php o .blade.php, utilizando una sintaxis especial similar a los componentes de frameworks frontend como Vue.js.
     * MFC significa Multi-File Component (Componente de Múltiples Archivos). En este formato, la lógica PHP se encuentra en un archivo de clase (.php) separado de su respectiva plantilla Blade (.blade.php). Este era el enfoque convencional en versiones anteriores de Livewire (antes de v4).
     * Class se refiere específicamente al formato Class-based component (Componente basado en Clase). Es similar a MFC, pero se usa para referirse a la estructura tradicional donde el foco principal es la clase PHP que extiende de Livewire\Component y su vista asociada se encuentra en una ubicación separada, a menudo en resources/views/livewire
+
+
+                        ----------------------------------------------------------------------------------------------------------------------
+                                Creando un crud con livewire (luego veré con crud-generator  "composer require ibex/crud-generator --dev")
+                        ----------------------------------------------------------------------------------------------------------------------
+1 crear la migración de la tabla o el modelo si ya existe
+    Creamos a mano el archivo Post.php
+
+            use Illuminte\Database\Eloquuent\Model;
+
+            class Post extends Model
+            {
+                public $timestamps = false;
+                protected $fillable = ['title', 'content'];
+            }
+    Luego 
+        php artisan make:livewire Post-crud
+resources\views\components\post-crud.blade.php
+
+UN DOLOR DE HUEVO HACERLO A MANO SIGIUENDO UN PUTO VIDEO
+
+
+                        ----------------------------------------------------------------------------------------------------------------------
+                                Creando un crud con crud-generator  "composer require ibex/crud-generator --dev"php artisan boost:install
+                        ----------------------------------------------------------------------------------------------------------------------
+composer require laravel/boost --dev
+php artisan boost:install (cuando se estaba instalando preguntó que agente configurar, ahí estaba Claudito)
+composer require ibex/crud-generator --dev
+
+creemos la migración de la tabla (ya que no la tengo), le pedimos a Claudito que haga cree una migración 
+    php artisan make:migration create_posts_table --no-interaction
+Read d:\www\laravel\livewire-casa\database\migrations\2026_03_29_022024_create_posts_table.php
+Edit d:\www\laravel\livewire-casa\database\migrations\2026_03_29_022024_create_posts_table.php
+Para ejecutarla: php artisan migrate
+
+Veamos ahora...
+
+php artisan make:crud posts livewire
+
+hizo todo, pero usó los x-label en lugar de flux (ver como se tira el comando)
+
+php artisan make:crud posts livewire --flux

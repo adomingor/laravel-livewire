@@ -18,8 +18,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
-        "ibex/crud-generator": "^2.1",
-        "laravel/boost": "*",
+        "ibex/crud-generator": "*",
         "laravel/pail": "^1.2.5",
         "laravel/pint": "^1.27",
         "laravel/sail": "^1.53",
@@ -70,10 +69,6 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan boost:update --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
