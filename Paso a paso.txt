@@ -243,3 +243,15 @@ php artisan make:crud-pro productos
 php artisan optimize:clear
 
 PERDIDA TOTAL DE TIEMPO CON CHAT-O
+
+                RETOMEMOS CON crud-generator luego veremos los stubs
+php artisan make:crud productos livewire (productos nombre de la tabla en postgresql)
+
+Running Crud Generator ...
+Creating Livewire Component ...
+
+ Already exist Model. Do you want overwrite (y/n)? [y] (hice una copia y luego renombre)
+
+ php artisan make:crud categorias livewire
+
+ 

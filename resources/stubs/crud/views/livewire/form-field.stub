@@ -1,0 +1,6 @@
+
+    <flux:field>
+        <flux:label>{{ __('{{title}}') }}</flux:label>
+        <flux:input wire:model="form.{{column}}" type="text" placeholder="{{title}}" />
+        <flux:error name="form.{{column}}" />
+    </flux:field>

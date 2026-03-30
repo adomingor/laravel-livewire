@@ -16,8 +16,8 @@
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
 
-                    <flux:sidebar.item icon="archive-box" :href="route('producto.index')" wire:navigate>
-                        {{ __('Productos chatGPT no funca bien') }}
+                    <flux:sidebar.item icon="archive-box" :href="route('productos.index')" wire:navigate>
+                        {{ __('Productos') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>

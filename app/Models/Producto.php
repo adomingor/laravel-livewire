@@ -2,46 +2,52 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Carbon;
 
 /**
- * @property int $id
- * @property string $producto
- * @property string|null $descripcion
- * @property bool $activo
- * @property int $id_users
- * @property Carbon $fecha_ins
- * @property Carbon|null $fecha_upd
+ * Class Producto
  *
- * @mixin Builder
+ * @property $id
+ * @property $producto
+ * @property $descripcion
+ * @property $activo
+ * @property $id_users
+ * @property $fecha_ins
+ * @property $fecha_upd
+ *
+ * @property User $user
+ * @property ProdCat[] $prodCats
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Producto extends Model
 {
-    public $timestamps = false;
+    
+    public $timestamps = false; // Desactiva la gestión automática de timestamps
+    protected $perPage = 20;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = ['producto', 'descripcion', 'activo', 'id_users', 'fecha_ins', 'fecha_upd'];
 
-    protected function casts(): array
-    {
-        return [
-            'activo' => 'boolean',
-            'fecha_ins' => 'datetime',
-            'fecha_upd' => 'datetime',
-        ];
-    }
 
-    public function user(): BelongsTo
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
     {
-        return $this->belongsTo(User::class, 'id_users');
+        return $this->belongsTo(\App\Models\User::class, 'id_users', 'id');
     }
-
-    public function categorias(): BelongsToMany
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function prodCats()
     {
-        return $this->belongsToMany(Categoria::class, 'prod_cat', 'id_productos', 'id_categorias')
-            ->withPivot(['activo', 'id_users', 'fecha_ins', 'fecha_upd']);
+        return $this->hasMany(\App\Models\ProdCat::class, 'id', 'id_productos');
     }
+    
 }
