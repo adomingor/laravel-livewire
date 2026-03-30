@@ -22,9 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Producto extends Model
 {
-    
+
     public $timestamps = false; // Desactiva la gestión automática de timestamps
-    protected $perPage = 20;
+    protected $perPage = 4;
 
     /**
      * The attributes that are mass assignable.
@@ -41,7 +41,7 @@ class Producto extends Model
     {
         return $this->belongsTo(\App\Models\User::class, 'id_users', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -49,5 +49,5 @@ class Producto extends Model
     {
         return $this->hasMany(\App\Models\ProdCat::class, 'id', 'id_productos');
     }
-    
+
 }
