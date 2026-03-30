@@ -1,4 +1,13 @@
 <div class="py-12">
+    {{-- Opción 1 — Callout inline (activa si usás session()->flash() en el componente) --}}
+    <!-- @if (session('success'))
+        <flux:callout variant="success" icon="check-circle" class="mb-4">
+            <flux:callout.heading>{{ session('success') }}</flux:callout.heading>
+        </flux:callout>
+    @endif -->
+
+    {{-- Opción 2 — Toast flotante (activar si usás Flux::toast() en el componente) --}}
+    <flux:toast position="top end" />
     <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8 bg-white dark:bg-zinc-900 shadow sm:rounded-lg">
             <div class="w-full">

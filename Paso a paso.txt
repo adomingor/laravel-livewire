@@ -257,7 +257,7 @@ Creating Livewire Component ...
 
 
                         ----------------------------------------------------------------------------------------------------------------------
-                                                                INSTALAMOS LOS IDIOMAS Y SEGUIMOS
+                                                        INSTALAMOS LOS IDIOMAS, CLAUDE PARA COMANDO Y SEGUIMOS
                         ----------------------------------------------------------------------------------------------------------------------
 composer require laravel-lang/common --dev
 php artisan lang:add es
@@ -267,9 +267,13 @@ APP_LOCALE=es
 APP_FALLBACK_LOCALE=en
 APP_FAKER_LOCALE=es_AR
 
+npm install -g @anthropic-ai/claude-code
+
                             ----------------------------------------------------------------------------------------------------------------------
-FIN                                                                INSTALAMOS LOS IDIOMAS Y SEGUIMOS
+FIN                                                      INSTALAMOS LOS IDIOMAS, CLAUDE PARA COMANDO Y SEGUIMOS
                             ----------------------------------------------------------------------------------------------------------------------
+
+
 
 Realizando pruebas de crud-generator con livewire
 

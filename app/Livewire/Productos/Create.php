@@ -4,6 +4,7 @@ namespace App\Livewire\Productos;
 
 use App\Livewire\Forms\ProductoForm;
 use App\Models\Producto;
+use Flux\Flux;
 use Livewire\Component;
 
 class Create extends Component
@@ -19,8 +20,16 @@ class Create extends Component
     {
         $this->form->store();
 
-        // return $this->redirectRoute('productos.index', navigate: true);
-        return redirect()->back()->with('success', {{ _('Saved')}}');
+        // session()->flash('success', __('Saved'));
+        // return $this->redirectRoute('productos.create', navigate: true);
+
+        $this->form->reset();
+
+        // Opción 1 — Callout inline en la vista (requiere @if session en el blade)
+        // session()->flash('success', __('Saved'));
+
+        // Opción 2 — Toast flotante de Flux (requiere <flux:toast /> en el blade)
+        Flux::toast(text: __('Saved'), variant: 'warning');
     }
 
     public function render()

@@ -4,8 +4,8 @@
             <div class="w-full">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <flux:heading size="lg">{{ __('Crear Prueba') }}</flux:heading>
-                        <flux:text class="mt-2">{{ __('Agrega un nuevo Prueba.') }}</flux:text>
+                        <flux:heading size="lg">{{ __('Create') }}</flux:heading>
+                        <flux:text class="mt-2">{{ __('Add') }}</flux:text>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                         <flux:button href="{{ route('pruebas.index') }}" wire:navigate variant="primary">

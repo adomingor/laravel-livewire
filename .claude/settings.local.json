@@ -14,7 +14,15 @@
       "Read(//c/ProgramData/Herd//**)",
       "Read(//c/Users/riviered/.config/herd/bin//**)",
       "Bash(\"/c/Users/riviered/.config/herd/bin/php84\" artisan:*)",
-      "Bash(\"/c/Users/riviered/.config/herd/bin/php84/php.exe\" artisan:*)"
+      "Bash(\"/c/Users/riviered/.config/herd/bin/php84/php.exe\" artisan:*)",
+      "mcp__laravel-boost__browser-logs",
+      "mcp__laravel-boost__last-error",
+      "mcp__laravel-boost__read-log-entries",
+      "mcp__laravel-boost__search-docs"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "laravel-boost"
+  ]
 }

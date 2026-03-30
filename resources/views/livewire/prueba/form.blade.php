@@ -1,5 +1,5 @@
 <div class="space-y-6">
-    
+
 
     <flux:field>
         <flux:label>{{ __('Apellido') }}</flux:label>
@@ -20,6 +20,6 @@
     </flux:field>
 
     <div class="flex items-center gap-4">
-        <flux:button variant="primary" type="submit">{{ __('Guardar') }}</flux:button>
+        <flux:button variant="primary" type="submit">{{ __('Save') }}</flux:button>
     </div>
 </div>
