@@ -19,7 +19,8 @@ class Create extends Component
     {
         $this->form->store();
 
-        return $this->redirectRoute('productos.index', navigate: true);
+        // return $this->redirectRoute('productos.index', navigate: true);
+        return redirect()->back()->with('success', {{ _('Saved')}}');
     }
 
     public function render()

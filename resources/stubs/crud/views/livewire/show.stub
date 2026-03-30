@@ -5,7 +5,7 @@
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <flux:heading size="lg">{{ __('{{modelTitle}}') }}</flux:heading>
-                        <flux:text class="mt-2">{{ __('Información completa del {{modelTitle}}.') }}</flux:text>
+                        <flux:text class="mt-2">{{ __('Showing data {{modelTitle}}.') }}</flux:text>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                         <flux:button href="{{ route('{{modelRoute}}.index') }}" wire:navigate variant="primary">
