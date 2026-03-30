@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan:*)",
+      "Bash(/c/Users/riviered/AppData/Local/Herd/resources/bin/php/php8.4/php.exe artisan:*)",
+      "Bash(herd php:*)",
+      "Read(//c/Users/riviered/AppData/Local/Herd/resources/**)",
+      "Bash(/c/Users/riviered/.config/herd/bin/php84.bat artisan:*)",
+      "Bash(/c/Users/riviered/AppData/Roaming/Herd/bin/php84.exe artisan:*)",
+      "Read(//c/Users/riviered/AppData/Roaming/Herd/**)",
+      "Read(//c/Users/riviered/AppData/Local/**)",
+      "Bash(command -v php)",
+      "Read(//usr/local/**)",
+      "Read(//c/ProgramData/Herd//**)",
+      "Read(//c/Users/riviered/.config/herd/bin//**)",
+      "Bash(\"/c/Users/riviered/.config/herd/bin/php84\" artisan:*)",
+      "Bash(\"/c/Users/riviered/.config/herd/bin/php84/php.exe\" artisan:*)"
+    ]
+  }
+}

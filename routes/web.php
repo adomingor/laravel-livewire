@@ -22,6 +22,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::livewire('/{producto}', 'productos.show')->name('show');
         Route::livewire('/{producto}/edit', 'productos.edit')->name('edit');
     });
+
+    Route::prefix('pruebas')->name('pruebas.')->group(function () {
+        Route::livewire('/', 'pruebas.index')->name('index');
+        Route::livewire('/create', 'pruebas.create')->name('create');
+        Route::livewire('/{prueba}', 'pruebas.show')->name('show');
+        Route::livewire('/{prueba}/edit', 'pruebas.edit')->name('edit');
+    });
+
 });
 
 require __DIR__.'/settings.php';

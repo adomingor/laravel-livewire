@@ -19,6 +19,10 @@
                     <flux:sidebar.item icon="archive-box" :href="route('productos.index')" wire:navigate>
                         {{ __('Productos') }}
                     </flux:sidebar.item>
+
+                    <flux:sidebar.item icon='beaker' :href="route('pruebas.index')" wire:navigate>
+                        {{ __('🚽 Pruebas') }}
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

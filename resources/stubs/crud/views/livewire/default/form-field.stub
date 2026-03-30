@@ -1,7 +1,6 @@
-    <div>
-        <x-input-label for="{{column_snake}}" :value="__('{{title}}')"/>
-        <x-text-input wire:model="form.{{column}}" id="{{column_snake}}" name="{{column}}" type="text" class="mt-1 block w-full" autocomplete="{{column}}" placeholder="{{title}}"/>
-        @error('form.{{column}}')
-            <x-input-error class="mt-2" :messages="$message"/>
-        @enderror
-    </div>
+
+    <flux:field>
+        <flux:label>{{ __('{{title}}') }}</flux:label>
+        <flux:input wire:model="form.{{column}}" id="{{column_snake}}" name="{{column}}" type="text" placeholder="{{title}}" />
+        <flux:error name="form.{{column}}" />
+    </flux:field>

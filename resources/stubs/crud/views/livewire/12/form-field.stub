@@ -1,3 +1,6 @@
-    <div>
-        <flux:input wire:model="form.{{column}}" :label="__('{{title}}')" type="text"  autocomplete="form.{{column}}" placeholder="{{title}}"/>
-    </div>
+
+    <flux:field>
+        <flux:label>{{ __('{{title}}') }}</flux:label>
+        <flux:input wire:model="form.{{column}}" id="{{column_snake}}" name="{{column}}" type="text" placeholder="{{title}}" />
+        <flux:error name="form.{{column}}" />
+    </flux:field>

@@ -61,7 +61,8 @@ Ese rayo (⚡) es un emoji decorativo de Laravel Livewire para identificar compo
 
     No tengo livewire.php, hay que publicarlo
 
-Publicar configuración: Si no tienes el archivo de configuración de Livewire, publícalo con:bashphp artisan vendor:publish --tag=livewire:config
+Publicar configuración: Si no tienes el archivo de configuración de Livewire, publícalo con:
+php artisan vendor:publish --tag=livewire:config
 Editar config/livewire.php: Busca la opción que controla los "stubs" (plantillas) o el prefijo de componente. En versiones modernas de Livewire, el rayo se puede eliminar modificando cómo Livewire genera los archivos.Alternativa - Personalizar Stubs: Puedes publicar los stubs (plantillas de archivos) de Livewire y quitar el rayo manualmente de ellos:bashphp artisan livewire:stubs
 Luego, edita los archivos en la carpeta stubs/ que se acaba de crear en tu proyecto, eliminando el emoji ⚡ de los nombres de archivo.El emoji ⚡ es opcional y no afecta el funcionamiento de tu aplicación, solo sirve como indicador visual.
 --------------------------------------------------------
@@ -244,7 +245,7 @@ php artisan optimize:clear
 
 PERDIDA TOTAL DE TIEMPO CON CHAT-O
 
-                RETOMEMOS CON crud-generator luego veremos los stubs
+                RETOMEMOS CON crud-generator luego veremos los stubs (php artisan vendor:publish --tag=crud)
 php artisan make:crud productos livewire (productos nombre de la tabla en postgresql)
 
 Running Crud Generator ...
@@ -254,4 +255,35 @@ Creating Livewire Component ...
 
  php artisan make:crud categorias livewire
 
- 
+
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                                INSTALAMOS LOS IDIOMAS Y SEGUIMOS
+                        ----------------------------------------------------------------------------------------------------------------------
+composer require laravel-lang/common --dev
+php artisan lang:add es
+
+    Luego en el .env configurar
+APP_LOCALE=es
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=es_AR
+
+                            ----------------------------------------------------------------------------------------------------------------------
+FIN                                                                INSTALAMOS LOS IDIOMAS Y SEGUIMOS
+                            ----------------------------------------------------------------------------------------------------------------------
+
+Realizando pruebas de crud-generator con livewire
+
+php artisan make:crud pruebas livewire
+Running Crud Generator ...
+Creating Livewire Component ...
+Creating Model ...
+Creating Request Class ...
+Creating Views ...
+Please add route below: i:e; web.php or api.php
+
+Route::get('/pruebas', \App\Livewire\Pruebas\Index::class)->name('pruebas.index');
+Route::get('/pruebas/create', \App\Livewire\Pruebas\Create::class)->name('pruebas.create');
+Route::get('/pruebas/show/{prueba}', \App\Livewire\Pruebas\Show::class)->name('pruebas.show');
+Route::get('/pruebas/update/{prueba}', \App\Livewire\Pruebas\Edit::class)->name('pruebas.edit');
+
+Created Successfully.
