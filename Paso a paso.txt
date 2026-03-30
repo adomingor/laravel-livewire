@@ -190,8 +190,56 @@ Para ejecutarla: php artisan migrate
 
 Veamos ahora...
 
-php artisan make:crud posts livewire
+php artisan make:crud posts livewire  👈 hizo todo, pero usó los x-label en lugar de flux (ver como se tira el comando)
 
-hizo todo, pero usó los x-label en lugar de flux (ver como se tira el comando)
+Usar con --flux 👇
+    php artisan make:crud posts livewire --flux (tener instaldo Volt... me daba error cdo. quería generar Productos)
 
-php artisan make:crud posts livewire --flux
+
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                                HERMOSO... AHORA VAMOS X UN CASO REAL
+                        ----------------------------------------------------------------------------------------------------------------------
+Trataré de hacer un CRUD, dejarlo con las opciones que más se usan, publicaré los stubs y con Claudio iremos dejándolo listo para que los próximos cruds ya tengan todo
+
+    Traje las tablas de la otra bd y las puse en tablas_productos_categorias.txt, vamos a pedir a Claudio las migraciones para ya tenerlas en cualquier proyecto, luego hare el crud con crud-generator, y con Claudio iremos poniendo
+
+🤖 Claud: crea las migarciones para las tablas que estan en tablas_productos_categorias.txt
+
+Creamos el crud (Son cruds básicos que necesitan luego poner las relaciones a mano)
+    php artisan make:crud Productos livewire --flux (ups, no estaban los modelos, da error en --flux, ahora veremos con el modelo)
+
+🤖 Claud: crea el modelo para las tablas productos, categorias y prod_cat
+
+El error con --flux es por que no está instalado Volt 
+    composer require livewire/volt (ahora lo instalamos)
+    Sigue dando error en --flux
+
+    Para hacer interactiva la creación de cruds se pone solamente php artisan make:crud Productos
+Solo aparecen esas opciones
+     php artisan make:crud Productos
+
+  Which stack would you like to install?
+  Blade with Bootstrap css ............................................................................................................... bootstrap
+  Blade with Tailwind css ................................................................................................................. tailwind
+  Livewire with Tailwind css .............................................................................................................. livewire
+  API only ..................................................................................................................................... api
+
+desinstalo crud y vuelvo a instalarlo ya con volt instalado
+
+    composer remove ibex/crud-generator
+    php artisan config:clear
+    php artisan cache:clear
+    composer dump-autoload
+
+Instalé de nuevo
+    composer require ibex/crud-generator --dev
+SIGUE DANDO ERROR EN --flux NO GENERA CON FLUX SEGÚN CHATGPT
+
+    php artisan make:command MakeCrudPro
+
+Crea app\Console\Commands\MakeCrudPro.php
+
+php artisan make:crud-pro productos
+php artisan optimize:clear
+
+PERDIDA TOTAL DE TIEMPO CON CHAT-O

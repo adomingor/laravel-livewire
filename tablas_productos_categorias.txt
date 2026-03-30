@@ -1,0 +1,87 @@
+
+-- Table: public.productos
+
+-- DROP TABLE IF EXISTS public.productos;
+
+CREATE TABLE IF NOT EXISTS public.productos
+(
+    id integer NOT NULL DEFAULT nextval('productos_id_seq'::regclass),
+    producto character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    descripcion text COLLATE pg_catalog."default",
+    activo boolean NOT NULL DEFAULT true,
+    id_users bigint NOT NULL,
+    fecha_ins timestamp without time zone NOT NULL DEFAULT now(),
+    fecha_upd timestamp without time zone,
+    CONSTRAINT productos_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.productos
+    OWNER to postgres;
+
+GRANT ALL ON TABLE public.productos TO learn;
+
+GRANT ALL ON TABLE public.productos TO postgres;
+
+
+-- Table: public.categorias
+
+-- DROP TABLE IF EXISTS public.categorias;
+
+CREATE TABLE IF NOT EXISTS public.categorias
+(
+    id smallint NOT NULL DEFAULT nextval('categorias_id_seq'::regclass),
+    categoria character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    activo boolean NOT NULL DEFAULT true,
+    id_users bigint NOT NULL,
+    fecha_ins timestamp without time zone NOT NULL DEFAULT now(),
+    fecha_upd timestamp without time zone,
+    CONSTRAINT categorias_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.categorias
+    OWNER to postgres;
+
+GRANT ALL ON TABLE public.categorias TO learn;
+
+GRANT ALL ON TABLE public.categorias TO postgres;
+
+
+-- Table: public.prod_cat
+
+-- DROP TABLE IF EXISTS public.prod_cat;
+
+CREATE TABLE IF NOT EXISTS public.prod_cat
+(
+    id bigint NOT NULL DEFAULT nextval('prod_cat_id_seq'::regclass),
+    id_productos integer NOT NULL,
+    id_categorias smallint NOT NULL,
+    activo boolean NOT NULL DEFAULT true,
+    id_users bigint NOT NULL,
+    fecha_ins timestamp without time zone NOT NULL DEFAULT now(),
+    fecha_upd timestamp without time zone,
+    CONSTRAINT prod_cat_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_prod_cat_cat FOREIGN KEY (id_categorias)
+        REFERENCES public.categorias (id) MATCH SIMPLE
+        ON UPDATE RESTRICT
+        ON DELETE RESTRICT,
+    CONSTRAINT fk_prod_cat_prod FOREIGN KEY (id_productos)
+        REFERENCES public.productos (id) MATCH SIMPLE
+        ON UPDATE RESTRICT
+        ON DELETE RESTRICT
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.prod_cat
+    OWNER to postgres;
+
+GRANT ALL ON TABLE public.prod_cat TO learn;
+
+GRANT ALL ON TABLE public.prod_cat TO postgres;
+
+COMMENT ON TABLE public.prod_cat
+    IS 'Relaciona el productos con sus categorías';
