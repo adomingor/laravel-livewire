@@ -26,7 +26,7 @@ class Index extends Component
                     ->orWhere('descripcion', 'ilike', '%' . $this->search . '%');
             })
             ->orderByDesc('producto', 'descripcion', 'asc')
-            ->paginate(5);
+            ->paginate();
 
         return view('livewire.producto.index', [
             'productos' => $productos,

@@ -15,9 +15,10 @@
                 </div>
 
                 <div class="mt-8 overflow-x-auto">
-                    <div class="w-6/12 mx-auto">
+                    <div class="w-6/12 mx-auto py-2">
                         {{-- 🔍 BUSCADOR --}}
-                        <flux:input wire:model.live.debounce.300ms="search" placeholder="Buscar producto..." />
+                        <flux:input wire:model.live.enter="search"
+                            placeholder="Buscar por producto o descripción (enter para buscar 🙊)" />
                     </div>
                     <table class="w-full divide-y divide-zinc-300 dark:divide-zinc-700">
                         <thead>

@@ -18,7 +18,12 @@
       "mcp__laravel-boost__browser-logs",
       "mcp__laravel-boost__last-error",
       "mcp__laravel-boost__read-log-entries",
-      "mcp__laravel-boost__search-docs"
+      "mcp__laravel-boost__search-docs",
+      "Bash(find d:/www/laravel/livewire-antig -name crud* -o -name *crud*)",
+      "Bash(xargs grep:*)",
+      "Bash(find d:/www/laravel/livewire-antig/app -name CrudMake* -o -name *Generator* -o -name *crud*)",
+      "Bash(composer show:*)",
+      "Bash(grep -E \"\\\\.stub$|\\\\.php$\")"
     ]
   },
   "enableAllProjectMcpServers": true,

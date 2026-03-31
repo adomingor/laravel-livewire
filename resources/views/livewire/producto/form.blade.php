@@ -12,8 +12,9 @@
         <flux:error name="form.descripcion" />
     </flux:field>
 
-    <flux:field>
-        <flux:switch wire:model="form.activo" label="{{ __('Activo') }}" />
+    <flux:field variant="inline">
+        <flux:label>{{ __('Activo') }}</flux:label>
+        <flux:switch wire:model="form.activo" />
         <flux:error name="form.activo" />
     </flux:field>
 
