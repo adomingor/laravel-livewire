@@ -15,10 +15,14 @@
                 </div>
 
                 <div class="mt-8 overflow-x-auto">
-                    <div class="w-6/12 mx-auto py-2">
+                    <div class="flex items-center justify-between py-2">
                         {{-- 🔍 BUSCADOR --}}
-                        <flux:input wire:model.live.enter="search"
-                            placeholder="Buscar por producto o descripción (enter para buscar 🙊)" />
+                        <div class="w-6/12">
+                            <flux:input wire:model.live.enter="search"
+                                placeholder="Buscar por producto o descripción (enter para buscar 🙊)" />
+                        </div>
+                        {{-- 📄 REGISTROS POR PÁGINA --}}
+                        <x-per-page-selector wire:model.live="perPage" :options="$perPageOptions" />
                     </div>
                     <table class="w-full divide-y divide-zinc-300 dark:divide-zinc-700">
                         <thead>

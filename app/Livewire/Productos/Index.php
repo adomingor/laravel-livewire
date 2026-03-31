@@ -10,34 +10,60 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
-    public $search = '';
+
+    public string $search = '';
+
+    public int $perPage;
+
+    public function mount(): void
+    {
+        $this->perPage = (new Producto)->getPerPage();
+    }
+
+    public function updatedPerPage(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
 
     public function render(): View
     {
-        // $productos = Producto::paginate(); muestra todos los registros paginados
-        // $productos = Producto::where('activo', 1)->orderBy('producto', 'asc')->paginate(); // solo los activos ordenados por producto
-
-        // return view('livewire.producto.index', compact('productos'))
-        //     ->with('i', $this->getPage() * $productos->perPage());
-
         $productos = Producto::query()
             ->when($this->search, function ($query) {
-                $query->where('producto', 'ilike', '%' . $this->search . '%')
-                    ->orWhere('descripcion', 'ilike', '%' . $this->search . '%');
+                $query->where('producto', 'ilike', '%'.$this->search.'%')
+                    ->orWhere('descripcion', 'ilike', '%'.$this->search.'%');
             })
             ->orderByDesc('producto', 'descripcion', 'asc')
-            ->paginate();
+            ->paginate($this->perPage > 0 ? $this->perPage : PHP_INT_MAX);
 
         return view('livewire.producto.index', [
             'productos' => $productos,
-            'i' => ($productos->currentPage() - 1) * $productos->perPage()
+            'i' => ($productos->currentPage() - 1) * $productos->perPage(),
+            'perPageOptions' => $this->perPageOptions(),
         ]);
     }
 
-    public function delete(Producto $producto)
+    public function delete(Producto $producto): mixed
     {
         $producto->delete();
 
         return $this->redirectRoute('productos.index', navigate: true);
+    }
+
+    private function perPageOptions(): array
+    {
+        $options = [5, 10, 15, 30, 50];
+        $modelDefault = (new Producto)->getPerPage();
+
+        if (! in_array($modelDefault, $options)) {
+            $options[] = $modelDefault;
+            sort($options);
+        }
+
+        return $options;
     }
 }
