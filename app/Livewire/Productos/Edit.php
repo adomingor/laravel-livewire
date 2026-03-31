@@ -24,7 +24,7 @@ class Edit extends Component
         // Si envío varios mensajes, hay que mostrarlos en el blade con una agrupación, Solo tiene esas 3 variantes
         // Flux::toast(text: __('Saved'), variant: 'danger', duration: 5000);
         // Flux::toast(text: __('Saved'), variant: 'warning', duration: 5000);
-        Flux::toast(text: __('Saved'), variant: 'success', duration: 5000);
+        Flux::toast(text: __('Saved'), variant: 'success', duration: 3000);
 
         // Si necesitás un ícono de info, tendrías que usar el callout (en el blade) que sí lo permite:
         // <flux:callout variant="success" icon="information-circle" class="mb-4">

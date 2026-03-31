@@ -29,7 +29,7 @@ class Create extends Component
         // session()->flash('success', __('Saved'));
 
         // Opción 2 — Toast flotante de Flux (requiere <flux:toast /> en el blade)
-        Flux::toast(text: __('Saved'), variant: 'warning');
+        Flux::toast(text: __('Saved'), variant: 'success', duration: 3000);
     }
 
     public function render()

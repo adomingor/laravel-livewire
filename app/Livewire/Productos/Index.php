@@ -33,11 +33,12 @@ class Index extends Component
     public function render(): View
     {
         $productos = Producto::query()
+            ->where('activo', true)
             ->when($this->search, function ($query) {
                 $query->where('producto', 'ilike', '%'.$this->search.'%')
                     ->orWhere('descripcion', 'ilike', '%'.$this->search.'%');
             })
-            ->orderByDesc('producto', 'descripcion', 'asc')
+            ->orderBy('producto')
             ->paginate($this->perPage > 0 ? $this->perPage : PHP_INT_MAX);
 
         return view('livewire.producto.index', [
@@ -56,7 +57,7 @@ class Index extends Component
 
     private function perPageOptions(): array
     {
-        $options = [5, 10, 15, 30, 50];
+        $options = [5, 15, 30, 50];
         $modelDefault = (new Producto)->getPerPage();
 
         if (! in_array($modelDefault, $options)) {

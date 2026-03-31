@@ -291,3 +291,4 @@ Route::get('/pruebas/show/{prueba}', \App\Livewire\Pruebas\Show::class)->name('p
 Route::get('/pruebas/update/{prueba}', \App\Livewire\Pruebas\Edit::class)->name('pruebas.edit');
 
 Created Successfully.
+

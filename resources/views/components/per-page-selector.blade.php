@@ -2,7 +2,7 @@
 
 <div class="flex items-center gap-2">
     <flux:text size="sm">{{ __('Mostrar') }}</flux:text>
-    <flux:select {{ $attributes }} size="sm" class="w-20">
+    <flux:select {{ $attributes }} size="sm" class="w-24">
         @foreach ($options as $option)
             <option value="{{ $option }}">{{ $option }}</option>
         @endforeach
