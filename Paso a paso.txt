@@ -292,3 +292,53 @@ Route::get('/pruebas/update/{prueba}', \App\Livewire\Pruebas\Edit::class)->name(
 
 Created Successfully.
 
+----------------------------------------------------------------------------------------------------------------------
+    Para mostrar el nombre de usuario en lugar del id, en el index de productos (por ejemplo)
+
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-600 dark:text-zinc-400">
+        {{ $producto->user?->name ?? 'N/A' }}
+    </td>
+
+
+----------------------------------------------------------------------------------------------------------------------
+    Agrupar los botones en el index
+
+    td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium">
+        <flux:dropdown>
+            <!-- Botón trigger (ícono) -->
+            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" />
+
+            <!-- Contenido del dropdown -->
+            <flux:menu>
+                <flux:menu.item href="{{ route('productos.show', $producto->id) }}"
+                    wire:navigate icon="eye">
+                    {{ __('Ver') }}
+                </flux:menu.item>
+
+                <flux:menu.item href="{{ route('productos.edit', $producto->id) }}"
+                    wire:navigate icon="pencil">
+                    {{ __('Editar') }}
+                </flux:menu.item>
+
+                <flux:menu.item wire:click="delete({{ $producto->id }})"
+                    wire:confirm="¿Estás seguro de que quieres eliminar este producto?"
+                    icon="trash" variant="danger">
+                    {{ __('Eliminar') }}
+                </flux:menu.item>
+            </flux:menu>
+        </flux:dropdown>
+    </td>
+
+----------------------------------------------------------------------------------------------------------------------
+
+    El estándar de la industria para administrar roles y permisos en Laravel es el paquete spatie/laravel-permission.
+        Características y Uso del Paquete Spatie:
+            Instalación: Se instala fácilmente mediante composer require spatie/laravel-permission.
+            Gestión: Permite crear roles (ej. 'admin', 'editor') y permisos (ej. 'editar artículos').
+            Asignación: Se añaden permisos a roles ($role->givePermissionTo($permission)) y roles a usuarios ($user->assignRole('writer')).
+            Verificación: Ofrece métodos sencillos en el modelo de usuario como $user->hasRole('admin') o $user->can('editar artículos').
+            Middleware: Soporta middleware para proteger rutas directamente: Route::group(['middleware' => ['role:admin']], ...)
+
+----------------------------------------------------------------------------------------------------------------------
+
+

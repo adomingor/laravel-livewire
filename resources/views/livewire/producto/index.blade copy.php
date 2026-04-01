@@ -54,10 +54,7 @@
                                     class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                                     {{ __('Fecha Upd') }}
                                 </th>
-                                <th scope="col"
-                                    class=" py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-                                    {{ __('Actions') }}
-                                </th>
+                                <th scope="col" class="px-3 py-3"></th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
@@ -79,7 +76,7 @@
                                         </flux:badge>
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-600 dark:text-zinc-400">
-                                        {{ $producto->user?->name ?? 'N/A' }}
+                                        {{ $producto->id_users }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-zinc-600 dark:text-zinc-400">
                                         {{ $producto->fecha_ins }}
@@ -88,29 +85,16 @@
                                         {{ $producto->fecha_upd }}
                                     </td>
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium">
-                                        <flux:dropdown>
-                                            <!-- Botón trigger (ícono) -->
-                                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" />
-
-                                            <!-- Contenido del dropdown -->
-                                            <flux:menu>
-                                                <flux:menu.item href="{{ route('productos.show', $producto->id) }}"
-                                                    wire:navigate icon="eye">
-                                                    {{ __('Ver') }}
-                                                </flux:menu.item>
-
-                                                <flux:menu.item href="{{ route('productos.edit', $producto->id) }}"
-                                                    wire:navigate icon="pencil">
-                                                    {{ __('Editar') }}
-                                                </flux:menu.item>
-
-                                                <flux:menu.item wire:click="delete({{ $producto->id }})"
-                                                    wire:confirm="¿Estás seguro de que quieres eliminar este producto?"
-                                                    icon="trash" variant="danger">
-                                                    {{ __('Eliminar') }}
-                                                </flux:menu.item>
-                                            </flux:menu>
-                                        </flux:dropdown>
+                                        <div class="flex items-center gap-2">
+                                            <flux:button href="{{ route('productos.show', $producto->id) }}" wire:navigate
+                                                size="sm" variant="ghost">{{ __('Ver') }}</flux:button>
+                                            <flux:button href="{{ route('productos.edit', $producto->id) }}" wire:navigate
+                                                size="sm" variant="ghost">{{ __('Editar') }}</flux:button>
+                                            <flux:button size="sm" variant="danger" wire:click="delete({{ $producto->id }})"
+                                                wire:confirm="¿Estás seguro de que quieres eliminar este producto?">
+                                                {{ __('Eliminar') }}
+                                            </flux:button>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
