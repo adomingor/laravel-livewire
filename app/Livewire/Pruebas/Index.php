@@ -21,6 +21,8 @@ class Index extends Component
 
     public function delete(Prueba $prueba)
     {
+        $this->authorize('delete', $prueba);
+
         $prueba->delete();
 
         return $this->redirectRoute('pruebas.index', navigate: true);

@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Filament\Resources\{{modelNamePluralUpperCase}}\Pages;
+
+use App\Filament\Resources\{{modelNamePluralUpperCase}}\{{modelName}}Resource;
+use Filament\Resources\Pages\EditRecord;
+
+class Edit{{modelName}} extends EditRecord
+{
+    protected static string $resource = {{modelName}}Resource::class;
+}

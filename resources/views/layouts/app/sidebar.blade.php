@@ -93,6 +93,8 @@
 
     {{ $slot }}
 
+    <flux:toast />
+
     @fluxScripts
 </body>
 

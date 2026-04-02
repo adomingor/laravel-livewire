@@ -12,11 +12,15 @@ class Edit extends Component
 
     public function mount(Prueba $prueba)
     {
+        $this->authorize('update', $prueba);
+
         $this->form->setPruebaModel($prueba);
     }
 
     public function save()
     {
+        $this->authorize('update', $this->form->pruebaModel);
+
         $this->form->update();
 
         return $this->redirectRoute('pruebas.index', navigate: true);

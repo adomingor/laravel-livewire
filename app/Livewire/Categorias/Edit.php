@@ -12,11 +12,15 @@ class Edit extends Component
 
     public function mount(Categoria $categoria)
     {
+        $this->authorize('update', $categoria);
+
         $this->form->setCategoriaModel($categoria);
     }
 
     public function save()
     {
+        $this->authorize('update', $this->form->categoriaModel);
+
         $this->form->update();
 
         return $this->redirectRoute('categorias.index', navigate: true);

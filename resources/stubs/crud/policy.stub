@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Policies;
+
+use {{modelNamespace}}\{{modelName}};
+use App\Models\User;
+
+class {{modelName}}Policy
+{
+    public function viewAny(User $user): bool
+    {
+        return $user->hasPermissionTo('ver {{modelRoute}}');
+    }
+
+    public function view(User $user, {{modelName}} ${{modelNameLowerCase}}): bool
+    {
+        return $user->hasPermissionTo('ver {{modelRoute}}');
+    }
+
+    public function create(User $user): bool
+    {
+        return $user->hasPermissionTo('crear {{modelRoute}}');
+    }
+
+    public function update(User $user, {{modelName}} ${{modelNameLowerCase}}): bool
+    {
+        return $user->hasPermissionTo('editar {{modelRoute}}');
+    }
+
+    public function delete(User $user, {{modelName}} ${{modelNameLowerCase}}): bool
+    {
+        return $user->hasPermissionTo('eliminar {{modelRoute}}');
+    }
+
+    public function deleteAny(User $user): bool
+    {
+        return $user->hasPermissionTo('eliminar {{modelRoute}}');
+    }
+}

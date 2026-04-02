@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Livewire\Hooks\AuthorizationExceptionHook;
+use App\Policies\RolePolicy;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Livewire;
+use Spatie\Permission\Models\Role;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // RolePolicy registrada manualmente porque el modelo es de Spatie, no de App\Models
+        Gate::policy(Role::class, RolePolicy::class);
+
+        // Interceptar AuthorizationException en componentes Livewire y mostrar toast
+        Livewire::componentHook(AuthorizationExceptionHook::class);
+
         $this->configureDefaults();
     }
 

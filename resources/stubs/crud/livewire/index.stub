@@ -21,6 +21,8 @@ class Index extends Component
 
     public function delete({{modelName}} ${{modelNameLowerCase}})
     {
+        $this->authorize('delete', ${{modelNameLowerCase}});
+
         ${{modelNameLowerCase}}->delete();
 
         return $this->redirectRoute('{{modelRoute}}.index', navigate: true);

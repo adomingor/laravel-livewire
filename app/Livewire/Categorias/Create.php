@@ -12,11 +12,15 @@ class Create extends Component
 
     public function mount(Categoria $categoria)
     {
+        $this->authorize('create', Categoria::class);
+
         $this->form->setCategoriaModel($categoria);
     }
 
     public function save()
     {
+        $this->authorize('create', Categoria::class);
+
         $this->form->store();
 
         return $this->redirectRoute('categorias.index', navigate: true);

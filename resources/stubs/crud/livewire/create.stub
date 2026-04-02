@@ -12,11 +12,15 @@ class Create extends Component
 
     public function mount({{modelName}} ${{modelNameLowerCase}})
     {
+        $this->authorize('create', {{modelName}}::class);
+
         $this->form->set{{modelName}}Model(${{modelNameLowerCase}});
     }
 
     public function save()
     {
+        $this->authorize('create', {{modelName}}::class);
+
         $this->form->store();
 
         return $this->redirectRoute('{{modelRoute}}.index', navigate: true);

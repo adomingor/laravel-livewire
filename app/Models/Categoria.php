@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Categoria
@@ -13,15 +17,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id_users
  * @property $fecha_ins
  * @property $fecha_upd
- *
  * @property User $user
  * @property ProdCat[] $prodCats
- * @package App
- * @mixin \Illuminate\Database\Eloquent\Builder
+ *
+ * @mixin Builder
  */
 class Categoria extends Model
 {
-    
+    use HasFactory;
+
+    public $timestamps = false;
+
     protected $perPage = 20;
 
     /**
@@ -31,21 +37,19 @@ class Categoria extends Model
      */
     protected $fillable = ['categoria', 'activo', 'id_users', 'fecha_ins', 'fecha_upd'];
 
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'id_users', 'id');
+        return $this->belongsTo(User::class, 'id_users', 'id');
     }
-    
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function prodCats()
     {
-        return $this->hasMany(\App\Models\ProdCat::class, 'id', 'id_categorias');
+        return $this->hasMany(ProdCat::class, 'id', 'id_categorias');
     }
-    
 }

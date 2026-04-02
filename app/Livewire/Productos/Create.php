@@ -13,11 +13,15 @@ class Create extends Component
 
     public function mount(Producto $producto)
     {
+        $this->authorize('create', Producto::class);
+
         $this->form->setProductoModel($producto);
     }
 
     public function save()
     {
+        $this->authorize('create', Producto::class);
+
         $this->form->store();
 
         // session()->flash('success', __('Saved'));

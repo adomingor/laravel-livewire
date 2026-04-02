@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Filament\Resources\{{modelNamePluralUpperCase}};
+
+use App\Filament\Resources\{{modelNamePluralUpperCase}}\Pages\Create{{modelName}};
+use App\Filament\Resources\{{modelNamePluralUpperCase}}\Pages\Edit{{modelName}};
+use App\Filament\Resources\{{modelNamePluralUpperCase}}\Pages\List{{modelNamePluralUpperCase}};
+use App\Filament\Resources\{{modelNamePluralUpperCase}}\Schemas\{{modelName}}Form;
+use App\Filament\Resources\{{modelNamePluralUpperCase}}\Tables\{{modelNamePluralUpperCase}}Table;
+use {{modelNamespace}}\{{modelName}};
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+
+class {{modelName}}Resource extends Resource
+{
+    protected static ?string $model = {{modelName}}::class;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static \UnitEnum|string|null $navigationGroup = '{{modelTitlePlural}}';
+
+    protected static ?string $modelLabel = '{{modelTitle}}';
+
+    protected static ?string $pluralModelLabel = '{{modelTitlePlural}}';
+
+    public static function form(Schema $schema): Schema
+    {
+        return {{modelName}}Form::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return {{modelNamePluralUpperCase}}Table::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => List{{modelNamePluralUpperCase}}::route('/'),
+            'create' => Create{{modelName}}::route('/create'),
+            'edit' => Edit{{modelName}}::route('/{record}/edit'),
+        ];
+    }
+}

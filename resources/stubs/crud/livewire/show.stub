@@ -12,6 +12,8 @@ class Show extends Component
 
     public function mount({{modelName}} ${{modelNameLowerCase}})
     {
+        $this->authorize('view', ${{modelNameLowerCase}});
+
         $this->form->set{{modelName}}Model(${{modelNameLowerCase}});
     }
 

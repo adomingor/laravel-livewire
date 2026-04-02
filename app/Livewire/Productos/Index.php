@@ -50,6 +50,9 @@ class Index extends Component
 
     public function delete(Producto $producto): mixed
     {
+        \Illuminate\Support\Facades\Log::debug('IndexProductos::delete called', ['user_id' => auth()->id(), 'producto_id' => $producto->id]);
+        $this->authorize('delete', $producto);
+
         $producto->delete();
 
         return $this->redirectRoute('productos.index', navigate: true);

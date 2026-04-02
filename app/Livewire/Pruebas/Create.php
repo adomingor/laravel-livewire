@@ -12,11 +12,15 @@ class Create extends Component
 
     public function mount(Prueba $prueba)
     {
+        $this->authorize('create', Prueba::class);
+
         $this->form->setPruebaModel($prueba);
     }
 
     public function save()
     {
+        $this->authorize('create', Prueba::class);
+
         $this->form->store();
 
         return $this->redirectRoute('pruebas.index', navigate: true);

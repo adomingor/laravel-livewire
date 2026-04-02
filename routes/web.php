@@ -30,6 +30,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::livewire('/{prueba}/edit', 'pruebas.edit')->name('edit');
     });
 
+    Route::prefix('categorias')->name('categorias.')->group(function () {
+        Route::livewire('/', 'categorias.index')->name('index');
+        Route::livewire('/create', 'categorias.create')->name('create');
+        Route::livewire('/{categoria}', 'categorias.show')->name('show');
+        Route::livewire('/{categoria}/edit', 'categorias.edit')->name('edit');
+    });
+
 });
 
 require __DIR__.'/settings.php';

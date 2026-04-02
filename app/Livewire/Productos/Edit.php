@@ -13,11 +13,15 @@ class Edit extends Component
 
     public function mount(Producto $producto)
     {
+        $this->authorize('update', $producto);
+
         $this->form->setProductoModel($producto);
     }
 
     public function save()
     {
+        $this->authorize('update', $this->form->productoModel);
+
         $this->form->update();
 
         $this->form->reset();

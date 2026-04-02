@@ -21,6 +21,8 @@ class Index extends Component
 
     public function delete(Categoria $categoria)
     {
+        $this->authorize('delete', $categoria);
+
         $categoria->delete();
 
         return $this->redirectRoute('categorias.index', navigate: true);
