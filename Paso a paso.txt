@@ -342,3 +342,43 @@ Created Successfully.
 ----------------------------------------------------------------------------------------------------------------------
 
 
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                        ROLES Y PERMISOS - COMENZAMOS CON LA SEGURIDAD (Spatie Permission + Filament)
+                        ----------------------------------------------------------------------------------------------------------------------
+                                    Resumen de la estrategia ideal:
+                                    Instala Spatie Laravel Permission.
+                                    Crea una pantalla de administración en tu web (puedes usar Filament para hacerlo en 5 minutos).
+                                    En tus archivos Blade, usa siempre @can('nombre_del_permiso').
+                                    A partir de ahí, cualquier cambio de "quién hace qué" se hace desde la web, sin tocar código.                                                        
+                        ----------------------------------------------------------------------------------------------------------------------
+    Se realizó respaldos de las bases de datos liveire y breeze para poder volver atrás
+
+    🍺 Spatie Laravel Permission.
+
+composer require spatie/laravel-permission
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan optimize:clear
+php artisan config:clear
+php artisan migrate
+----------------------------------------------------------------------------------------------------------------------
+Agregar al modelo User.php
+
+use Spatie\Permission\Traits\HasRoles; 💥<- Aqui HasRoles
+
+#[Fillable(['name', 'email', 'password'])]
+#[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
+class User extends Authenticatable
+{
+    /** @use HasFactory<UserFactory> */
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles; 💥<- Aqui HasRoles
+----------------------------------------------------------------------------------------------------------------------
+    🍺 Filament.
+composer require filament/filament:"^5.0"  (Si se usa desde poweshell composer require filament/filament:"~5.0")
+php artisan filament:install --panels
+     What is the panel's ID? [admin]
+    All done! Would you like to show some love by starring the Filament repo on GitHub? (yes/no) [yes]
+
+                        ----------------------------------------------------------------------------------------------------------------------
+FIN                                                     COMENZAMOS CON LA SEGURIDAD (Spatie) ROLES Y PERMISOS
+                        ----------------------------------------------------------------------------------------------------------------------
+ 
