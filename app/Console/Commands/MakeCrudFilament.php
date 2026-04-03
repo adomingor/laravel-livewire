@@ -7,9 +7,9 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
-class MakeCrudFull extends Command
+class MakeCrudFilament extends Command
 {
-    protected $signature = 'make:crud-full
+    protected $signature = 'make:crud-filament
                             {name : Table name}
                             {--route= : Custom route name}';
 

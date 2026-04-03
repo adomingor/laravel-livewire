@@ -23,18 +23,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::livewire('/{producto}/edit', 'productos.edit')->name('edit');
     });
 
-    Route::prefix('pruebas')->name('pruebas.')->group(function () {
-        Route::livewire('/', 'pruebas.index')->name('index');
-        Route::livewire('/create', 'pruebas.create')->name('create');
-        Route::livewire('/{prueba}', 'pruebas.show')->name('show');
-        Route::livewire('/{prueba}/edit', 'pruebas.edit')->name('edit');
-    });
-
     Route::prefix('categorias')->name('categorias.')->group(function () {
         Route::livewire('/', 'categorias.index')->name('index');
         Route::livewire('/create', 'categorias.create')->name('create');
         Route::livewire('/{categoria}', 'categorias.show')->name('show');
         Route::livewire('/{categoria}/edit', 'categorias.edit')->name('edit');
+    });
+
+    Route::prefix('pruebas')->name('pruebas.')->group(function () {
+        Route::livewire('/', 'pruebas.index')->name('index');
+        Route::livewire('/create', 'pruebas.create')->name('create');
+        Route::livewire('/{prueba}', 'pruebas.show')->name('show');
+        Route::livewire('/{prueba}/edit', 'pruebas.edit')->name('edit');
     });
 
 });

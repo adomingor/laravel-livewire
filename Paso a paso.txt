@@ -183,78 +183,37 @@ composer require laravel/boost --dev
 php artisan boost:install (cuando se estaba instalando preguntó que agente configurar, ahí estaba Claudito)
 composer require ibex/crud-generator --dev
 
-creemos la migración de la tabla (ya que no la tengo), le pedimos a Claudito que haga cree una migración 
-    php artisan make:migration create_posts_table --no-interaction
-Read d:\www\laravel\livewire-casa\database\migrations\2026_03_29_022024_create_posts_table.php
-Edit d:\www\laravel\livewire-casa\database\migrations\2026_03_29_022024_create_posts_table.php
-Para ejecutarla: php artisan migrate
+🤖 Claude vamos mejorando el crud para implementar livewire, flux, spatie permission y filament (más abajo están los pasos para instalar)
+Con 
+php artisan make:crud nombre_table --livewire (se crea un crud sin roles y permisos adaptado a flux)
+php artisan make:crud-liveire nombre_tabla (se crea un crud respetando la estructura de crud-generator con flux, roles y permisos)
+     Ejemplo
+        php artisan make:crud-livewire pruebas
+        Generating Livewire CRUD...
+        Running Crud Generator ...
+        Creating Livewire Component ...
+        Creating Model ...
+        Creating Request Class ...
+        Creating Views ...
+        Please add route below: i:e; web.php or api.php
 
-Veamos ahora...
+        Route::get('/pruebas', \App\Livewire\Pruebas\Index::class)->name('pruebas.index');
+        Route::get('/pruebas/create', \App\Livewire\Pruebas\Create::class)->name('pruebas.create');
+        Route::get('/pruebas/show/{prueba}', \App\Livewire\Pruebas\Show::class)->name('pruebas.show');
+        Route::get('/pruebas/update/{prueba}', \App\Livewire\Pruebas\Edit::class)->name('pruebas.edit');
 
-php artisan make:crud posts livewire  👈 hizo todo, pero usó los x-label en lugar de flux (ver como se tira el comando)
+        Created Successfully.
+        Generating Policy...
+        Created: app/Policies/PruebaPolicy.php
+        Adding routes to web.php...
+        Updated: routes/web.php (added route group [pruebas])
 
-Usar con --flux 👇
-    php artisan make:crud posts livewire --flux (tener instaldo Volt... me daba error cdo. quería generar Productos)
+        ✓ Done! Next steps:
+        1. Add to RolesAndPermissionsSeeder:
+            'ver pruebas', 'crear pruebas', 'editar pruebas', 'eliminar pruebas'
+        2. Run: php artisan db:seed --class=RolesAndPermissionsSeeder
 
-
-                        ----------------------------------------------------------------------------------------------------------------------
-                                                                HERMOSO... AHORA VAMOS X UN CASO REAL
-                        ----------------------------------------------------------------------------------------------------------------------
-Trataré de hacer un CRUD, dejarlo con las opciones que más se usan, publicaré los stubs y con Claudio iremos dejándolo listo para que los próximos cruds ya tengan todo
-
-    Traje las tablas de la otra bd y las puse en tablas_productos_categorias.txt, vamos a pedir a Claudio las migraciones para ya tenerlas en cualquier proyecto, luego hare el crud con crud-generator, y con Claudio iremos poniendo
-
-🤖 Claude: crea las migarciones para las tablas que estan en tablas_productos_categorias.txt
-
-Creamos el crud (Son cruds básicos que necesitan luego poner las relaciones a mano)
-    php artisan make:crud Productos livewire --flux (ups, no estaban los modelos, da error en --flux, ahora veremos con el modelo)
-
-🤖 Claude: crea el modelo para las tablas productos, categorias y prod_cat
-
-El error con --flux es por que no está instalado Volt 
-    composer require livewire/volt (ahora lo instalamos)
-    Sigue dando error en --flux
-
-    Para hacer interactiva la creación de cruds se pone solamente php artisan make:crud Productos
-Solo aparecen esas opciones
-     php artisan make:crud Productos
-
-  Which stack would you like to install?
-  Blade with Bootstrap css ............................................................................................................... bootstrap
-  Blade with Tailwind css ................................................................................................................. tailwind
-  Livewire with Tailwind css .............................................................................................................. livewire
-  API only ..................................................................................................................................... api
-
-desinstalo crud y vuelvo a instalarlo ya con volt instalado
-
-    composer remove ibex/crud-generator
-    php artisan config:clear
-    php artisan cache:clear
-    composer dump-autoload
-
-Instalé de nuevo
-    composer require ibex/crud-generator --dev
-SIGUE DANDO ERROR EN --flux NO GENERA CON FLUX SEGÚN CHATGPT
-
-    php artisan make:command MakeCrudPro
-
-Crea app\Console\Commands\MakeCrudPro.php
-
-php artisan make:crud-pro productos
-php artisan optimize:clear
-
-PERDIDA TOTAL DE TIEMPO CON CHAT-O
-
-                RETOMEMOS CON crud-generator luego veremos los stubs (php artisan vendor:publish --tag=crud)
-php artisan make:crud productos livewire (productos nombre de la tabla en postgresql)
-
-Running Crud Generator ...
-Creating Livewire Component ...
-
- Already exist Model. Do you want overwrite (y/n)? [y] (hice una copia y luego renombre)
-
- php artisan make:crud categorias livewire
-
+php artisan make:crud-Filament nombre_tabla (crea un crud de filament con roles y permisos de spetie permission con flux integrado)
 
                         ----------------------------------------------------------------------------------------------------------------------
                                                         INSTALAMOS LOS IDIOMAS, CLAUDE PARA COMANDO Y SEGUIMOS
@@ -273,24 +232,6 @@ npm install -g @anthropic-ai/claude-code
 FIN                                                      INSTALAMOS LOS IDIOMAS, CLAUDE PARA COMANDO Y SEGUIMOS
                             ----------------------------------------------------------------------------------------------------------------------
 
-
-
-Realizando pruebas de crud-generator con livewire
-
-php artisan make:crud pruebas livewire
-Running Crud Generator ...
-Creating Livewire Component ...
-Creating Model ...
-Creating Request Class ...
-Creating Views ...
-Please add route below: i:e; web.php or api.php
-
-Route::get('/pruebas', \App\Livewire\Pruebas\Index::class)->name('pruebas.index');
-Route::get('/pruebas/create', \App\Livewire\Pruebas\Create::class)->name('pruebas.create');
-Route::get('/pruebas/show/{prueba}', \App\Livewire\Pruebas\Show::class)->name('pruebas.show');
-Route::get('/pruebas/update/{prueba}', \App\Livewire\Pruebas\Edit::class)->name('pruebas.edit');
-
-Created Successfully.
 
 ----------------------------------------------------------------------------------------------------------------------
     Para mostrar el nombre de usuario en lugar del id, en el index de productos (por ejemplo)
@@ -328,19 +269,6 @@ Created Successfully.
             </flux:menu>
         </flux:dropdown>
     </td>
-
-----------------------------------------------------------------------------------------------------------------------
-
-    El estándar de la industria para administrar roles y permisos en Laravel es el paquete spatie/laravel-permission.
-        Características y Uso del Paquete Spatie:
-            Instalación: Se instala fácilmente mediante composer require spatie/laravel-permission.
-            Gestión: Permite crear roles (ej. 'admin', 'editor') y permisos (ej. 'editar artículos').
-            Asignación: Se añaden permisos a roles ($role->givePermissionTo($permission)) y roles a usuarios ($user->assignRole('writer')).
-            Verificación: Ofrece métodos sencillos en el modelo de usuario como $user->hasRole('admin') o $user->can('editar artículos').
-            Middleware: Soporta middleware para proteger rutas directamente: Route::group(['middleware' => ['role:admin']], ...)
-
-----------------------------------------------------------------------------------------------------------------------
-
 
                         ----------------------------------------------------------------------------------------------------------------------
                                                         ROLES Y PERMISOS - COMENZAMOS CON LA SEGURIDAD (Spatie Permission + Filament)
@@ -528,7 +456,7 @@ FIN                                                     COMENZAMOS CON LA SEGURI
 🤖 Todo completado — Cómo usarlo
 Nuevo comando único 😲😲😲😲😲😲😲
 
-php artisan make:crud-full posts  (💡 Genera el crud ya para filament, no como vengo trabajando)
+php artisan make:crud-filament posts  (💡 Genera el crud ya para filament, no como vengo trabajando)
 Genera en un solo paso:
 
 Livewire CRUD — app/Livewire/Posts/{Index,Create,Edit,Show}.php + Forms/PostForm.php
@@ -620,10 +548,13 @@ Agregar en database/seeders/DatabaseSeeder.php
 php artisan db:seed --class=PersonaSeeder
 
 
+                        ----------------------------------------------------------------------------------------------------------------------
+                                                                            Eliminar cruds
+
 🙋‍♂️ creame dos comandos uno para eliminar los archivos creados con crud completo de crud-generator y otro para eliminar los archivos creados con crud-full pasandole el nombre del modelo
 
 🤖 Todo listo — Cómo usarlo
-destroy:crud {name} — elimina lo que genera make:crud {name} livewire:
+destroy:crud {name} — elimina lo que genera make:crud-livewire {name} :
 
 Model, Request
 4 componentes Livewire + Form
@@ -637,10 +568,13 @@ Ambos aceptan --route= (si usaste ruta custom) y --force para saltear la confirm
 
 Ejemplo php artisan destroy:crud pruebas
 
--------------------------------------------------------
+                        ----------------------------------------------------------------------------------------------------------------------
 💡 Antes de seguir. Para generar el modelo tomando ya la tabla creada en la base de datos
 
 composer require reliese/laravel
+php artisan vendor:publish --tag=reliese-models
 
 Ejemplo: 
 php artisan code:models --table=pruebas
+
+                        ----------------------------------------------------------------------------------------------------------------------

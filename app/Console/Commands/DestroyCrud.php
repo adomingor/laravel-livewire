@@ -43,6 +43,7 @@ class DestroyCrud extends Command
             app_path("{$livewirePath}{$pluralUpper}/Edit.php"),
             app_path("{$livewirePath}{$pluralUpper}/Create.php"),
             app_path("{$livewirePath}Forms/{$modelName}Form.php"),
+            app_path("Policies/{$modelName}Policy.php"),
         ];
 
         $viewDir = resource_path("views/livewire/{$modelKebab}");
