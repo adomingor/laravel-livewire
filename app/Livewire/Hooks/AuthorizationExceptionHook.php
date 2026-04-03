@@ -10,11 +10,6 @@ class AuthorizationExceptionHook extends ComponentHook
 {
     public function exception($e, $stopPropagation): void
     {
-        \Illuminate\Support\Facades\Log::debug('AuthorizationExceptionHook::exception called', [
-            'exception_class' => get_class($e),
-            'is_auth' => $e instanceof AuthorizationException,
-        ]);
-
         if (! ($e instanceof AuthorizationException)) {
             return;
         }

@@ -12,6 +12,8 @@ class Show extends Component
 
     public function mount(Categoria $categoria)
     {
+        $this->authorize('view', $categoria);
+
         $this->form->setCategoriaModel($categoria);
     }
 

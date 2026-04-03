@@ -31,7 +31,8 @@
       "Bash(grep -rn \"flux:toast\" resources/views/*.blade.php)",
       "Bash(grep -n 'componentHook\\\\|hooks\\\\|$hooks' vendor/livewire/livewire/src/LivewireManager.php)",
       "Bash(grep -n 'register\\\\|$hooks\\\\|static.*hooks' vendor/livewire/livewire/src/ComponentHookRegistry.php)",
-      "Bash(grep -n '^function on\\\\|^function trigger\\\\|listeners\\\\|$listeners' vendor/livewire/livewire/src/helpers.php)"
+      "Bash(grep -n '^function on\\\\|^function trigger\\\\|listeners\\\\|$listeners' vendor/livewire/livewire/src/helpers.php)",
+      "Bash(vendor/bin/pint --dirty --format agent app/Console/Commands/DestroyCrud.php app/Console/Commands/DestroyCrudFull.php)"
     ]
   },
   "enableAllProjectMcpServers": true,

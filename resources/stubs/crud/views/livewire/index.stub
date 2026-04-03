@@ -10,7 +10,7 @@
                     @can('create', \{{modelNamespace}}\{{modelName}}::class)
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                         <flux:button href="{{ route('{{modelRoute}}.create') }}" wire:navigate variant="primary">
-                            {{ __('Agregar') }}
+                            {{ __('Add') }}
                         </flux:button>
                     </div>
                     @endcan
@@ -31,22 +31,32 @@
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ ++$i }}</td>
                                     {{tableBody}}
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium">
-                                        <div class="flex items-center gap-2">
-                                            @can('view', ${{modelNameLowerCase}})
-                                            <flux:button href="{{ route('{{modelRoute}}.show', ${{modelNameLowerCase}}->id) }}" wire:navigate size="sm" variant="ghost">{{ __('Ver') }}</flux:button>
-                                            @endcan
-                                            @can('update', ${{modelNameLowerCase}})
-                                            <flux:button href="{{ route('{{modelRoute}}.edit', ${{modelNameLowerCase}}->id) }}" wire:navigate size="sm" variant="ghost">{{ __('Editar') }}</flux:button>
-                                            @endcan
-                                            @can('delete', ${{modelNameLowerCase}})
-                                            <flux:button
-                                                size="sm"
-                                                variant="danger"
-                                                wire:click="delete({{ ${{modelNameLowerCase}}->id }})"
-                                                wire:confirm="¿Estás seguro de que quieres eliminar este registro?"
-                                            >{{ __('Eliminar') }}</flux:button>
-                                            @endcan
-                                        </div>
+                                        <flux:dropdown>
+                                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" />
+
+                                            <flux:menu>
+                                                @can('view', ${{modelNameLowerCase}})
+                                                <flux:menu.item href="{{ route('{{modelRoute}}.show', ${{modelNameLowerCase}}->id) }}" wire:navigate icon="eye">
+                                                    {{ __('Show') }}
+                                                </flux:menu.item>
+                                                @endcan
+                                                @can('update', ${{modelNameLowerCase}})
+                                                <flux:menu.item href="{{ route('{{modelRoute}}.edit', ${{modelNameLowerCase}}->id) }}" wire:navigate icon="pencil">
+                                                    {{ __('Edit') }}
+                                                </flux:menu.item>
+                                                @endcan
+                                                @can('delete', ${{modelNameLowerCase}})
+                                                <flux:menu.item
+                                                    wire:click="delete({{ ${{modelNameLowerCase}}->id }})"
+                                                    wire:confirm="¿Estás seguro de que quieres eliminar este registro?"
+                                                    icon="trash"
+                                                    variant="danger"
+                                                >
+                                                    {{ __('Delete') }}
+                                                </flux:menu.item>
+                                                @endcan
+                                            </flux:menu>
+                                        </flux:dropdown>
                                     </td>
                                 </tr>
                             @endforeach

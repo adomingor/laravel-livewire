@@ -528,7 +528,7 @@ FIN                                                     COMENZAMOS CON LA SEGURI
 🤖 Todo completado — Cómo usarlo
 Nuevo comando único 😲😲😲😲😲😲😲
 
-php artisan make:crud-full posts
+php artisan make:crud-full posts  (💡 Genera el crud ya para filament, no como vengo trabajando)
 Genera en un solo paso:
 
 Livewire CRUD — app/Livewire/Posts/{Index,Create,Edit,Show}.php + Forms/PostForm.php
@@ -554,3 +554,93 @@ policy.stub	Policy con hasPermissionTo() de Spatie
 filament/Resource.stub	Filament Resource con grupo de navegación
 filament/Form.stub + Table.stub	Campos generados automáticamente desde la tabla
 filament/Pages/*.stub	Pages de List/Create/Edit
+
+                        ----------------------------------------------------------------------------------------------------------------------
+Vamos a probar los cruds
+
+php artisan make:migration personas
+
+    public function up(): void
+    {
+        Schema::create('personas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 80);
+            $table->string('apellido', 80);
+            $table->string('email', 80);
+            $table->string('telefono', 80);
+            $table->timestamps();
+        });
+    }
+
+php artisan make:factory PersonaFactory --model=Persona
+    crea el archivo \database\factories\PersonaFactory.php
+
+    public function definition(): array
+    {
+        return [
+            'nombre' => fake()->firstName(),
+            'apellido' => fake()->lastName(),
+            'email' => fake()->unique()->safeEmail(),
+            'telefono' => fake()->phoneNumber(),            
+        ];
+    }
+
+php artisan make:seeder PersonaSeeder
+    public function run(): void
+    {
+
+        \App\Models\Persona::factory(50)->create();
+    }
+
+php artisan make:model Persona
+Debe tener todo esto
+-------------------------------------------------------
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Persona extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'email',
+        'telefono',
+    ];
+}
+-------------------------------------------------------
+
+Agregar en database/seeders/DatabaseSeeder.php
+    $this->call(PersonaSeeder::class);
+
+    Para ejecutarlo
+php artisan db:seed --class=PersonaSeeder
+
+
+🙋‍♂️ creame dos comandos uno para eliminar los archivos creados con crud completo de crud-generator y otro para eliminar los archivos creados con crud-full pasandole el nombre del modelo
+
+🤖 Todo listo — Cómo usarlo
+destroy:crud {name} — elimina lo que genera make:crud {name} livewire:
+
+Model, Request
+4 componentes Livewire + Form
+5 vistas Blade
+Directorios vacíos resultantes
+destroy:crud-full {name} — elimina todo lo anterior más:
+
+Policy (app/Policies/)
+Directorio completo del Filament Resource (app/Filament/Resources/{Nombres}/)
+Ambos aceptan --route= (si usaste ruta custom) y --force para saltear la confirmación. Sin --force muestran la lista de archivos y piden confirmación antes de borrar nada.
+
+Ejemplo php artisan destroy:crud pruebas
+
+-------------------------------------------------------
+💡 Antes de seguir. Para generar el modelo tomando ya la tabla creada en la base de datos
+
+composer require reliese/laravel
+
+Ejemplo: 
+php artisan code:models --table=pruebas
