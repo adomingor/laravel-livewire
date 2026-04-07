@@ -20,13 +20,13 @@
                     {{ __('Dashboard') }}
                 </flux:sidebar.item>
 
-                <flux:navlist.group heading="Aprendizaje" expandable>
-                    <flux:navlist.item icon="archive-box" :href="route('productos.index')" wire:navigate>
-                        {{ __('Productos') }}
+                <flux:navlist.group heading="Menú 1" expandable>
+                    <flux:navlist.item icon="archive-box" :href="route('dashboard')" wire:navigate>
+                        {{ __('Ítem 1 🚀') }}
                     </flux:navlist.item>
 
-                    <flux:navlist.item icon='beaker' :href="route('pruebas.index')" wire:navigate>
-                        {{ __('Pruebas 🚽') }}
+                    <flux:navlist.item icon='beaker' :href="route('dashboard')" wire:navigate>
+                        {{ __('Ítem 2 🍺') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
 

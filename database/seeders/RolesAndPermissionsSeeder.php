@@ -16,24 +16,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // --- Permisos ---
         $permisos = [
-            // Productos
-            'ver productos',
-            'crear productos',
-            'editar productos',
-            'eliminar productos',
-
-            // Categorías
-            'ver categorias',
-            'crear categorias',
-            'editar categorias',
-            'eliminar categorias',
-
-            // Pruebas
-            'ver pruebas',
-            'crear pruebas',
-            'editar pruebas',
-            'eliminar pruebas',
-
             // Usuarios
             'ver usuarios',
             'crear usuarios',
@@ -56,22 +38,6 @@ class RolesAndPermissionsSeeder extends Seeder
         // Admin: acceso total
         $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $admin->syncPermissions(Permission::all());
-
-        // Editor: puede ver, crear y editar (no eliminar ni gestionar usuarios/roles)
-        $editor = Role::firstOrCreate(['name' => 'editor', 'guard_name' => 'web']);
-        $editor->syncPermissions([
-            'ver productos', 'crear productos', 'editar productos',
-            'ver categorias', 'crear categorias', 'editar categorias',
-            'ver pruebas', 'crear pruebas', 'editar pruebas',
-        ]);
-
-        // Viewer: solo lectura
-        $viewer = Role::firstOrCreate(['name' => 'viewer', 'guard_name' => 'web']);
-        $viewer->syncPermissions([
-            'ver productos',
-            'ver categorias',
-            'ver pruebas',
-        ]);
 
         $this->command->info('Roles y permisos creados correctamente.');
     }
